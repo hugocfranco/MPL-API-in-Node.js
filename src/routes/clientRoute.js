@@ -7,7 +7,7 @@ const controller = require('../controllers/clientcontroller')
 router.get('/', controller.get);
 router.get('/:email', controller.getByEmail);
 router.post('/', controller.postCadastro);
-router.put('/:senha', controller.putSenha);
+router.put('/:email', controller.putSenha);
 router.delete('/', controller.deleteConta);
 
 module.exports = router;

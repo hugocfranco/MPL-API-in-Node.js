@@ -8,7 +8,7 @@ router.get('/', controller.get);
 router.get('/:email', controller.getByEmail);
 router.get('/:area', controller.getByArea);
 router.post('/', controller.postCadastro);
-router.put('/:senha', controller.putSenha);
+router.put('/:email', controller.putSenha);
 router.delete('/', controller.deleteConta);
 
 module.exports = router;
