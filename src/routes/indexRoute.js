@@ -5,8 +5,8 @@ const router = express.Router();
 
 router.get('/', (req, res, next) => {
     res.status(200).send({
-        title: "Marketplace Lawyers",
-        version: "0.2"
+        titulo: "Marketplace Lawyers",
+        version: "1.3"
     });
 });
 
