@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 // carregando o banco
-mongoose.connect('mongodb+srv://teste:teste@azure1-y7vui.azure.mongodb.net/test?retryWrites=true&w=majority',  { useNewUrlParser: true })
+mongoose.connect('mongodb+srv://****:**********@azure1-y7vui.azure.mongodb.net/test?retryWrites=true&w=majority',  { useNewUrlParser: true })
 
 // carregando os modelos
 const Cliente = require('./models/cliente');
