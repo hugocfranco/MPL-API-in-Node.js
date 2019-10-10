@@ -7,7 +7,9 @@ const mongoose = require('mongoose');
 const app = express();
 
 // carregando o banco
-mongoose.connect('mongodb+srv://****:**********@azure1-y7vui.azure.mongodb.net/test?retryWrites=true&w=majority',  { useNewUrlParser: true })
+mongoose.connect('mongodb+srv://****:**********@azure1-y7vui.azure.mongodb.net/test?retryWrites=true&w=majority', {
+    useNewUrlParser: true
+})
 
 // carregando os modelos
 const Cliente = require('./models/cliente');
@@ -21,12 +23,14 @@ const advRoute = require('./routes/advRoute');
 const escRoute = require('./routes/escRoute');
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
-app.use('/',indexRoute);
-app.use('/clientes',clientRoute);
-app.use('/advogados',advRoute);
-app.use('/escritorios',escRoute);
+app.use('/', indexRoute);
+app.use('/clientes', clientRoute);
+app.use('/advogados', advRoute);
+app.use('/escritorios', escRoute);
 
 /*
 //Habilidando o CORS

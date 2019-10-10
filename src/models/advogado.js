@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 mongoose.set('useCreateIndex', true)
 
 const schema = new Schema({
-	nome: {
+    nome: {
         type: String,
         required: [true, 'Nome e obrigatorio']
     },
@@ -25,11 +25,11 @@ const schema = new Schema({
         required: false,
         minlength: [13, "Numero invalido"],
         maxlength: [13, 'Numero invalido'],
-	},
-	area: [{
-		type: String,
-		required: [true, 'Area de atuacao necessaria']
-	}]
+    },
+    area: [{
+        type: String,
+        required: [true, 'Area de atuacao necessaria']
+    }]
 });
 
 module.exports = mongoose.model('Advogado', schema);

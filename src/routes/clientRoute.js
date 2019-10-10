@@ -9,5 +9,6 @@ router.get('/:email', controller.getByEmail);
 router.post('/', controller.postCadastro);
 router.put('/:email', controller.putSenha);
 router.delete('/', controller.deleteConta);
+router.options
 
 module.exports = router;

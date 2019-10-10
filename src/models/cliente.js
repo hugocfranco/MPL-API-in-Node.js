@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 mongoose.set('useCreateIndex', true)
 
 const schema = new Schema({
-	nome: {
+    nome: {
         type: String,
         required: [true, 'Nome e obrigatorio']
     },
