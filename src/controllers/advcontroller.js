@@ -7,9 +7,13 @@ exports.get = (req, res, next) => {
 	Advogado
 		.find({}, 'nome email area')
 		.then(data => {
-			res.status(200).send(data);
-		}).catch(erro => {
-			res.status(400).send(erro);
+			if (Array.isArray(data) && data.length) {
+				res.status(200).send(data)
+			} else {
+				res.status(200).send({
+					message: "Sem advogados cadastrados!"
+				});
+			};
 		});
 };
 
@@ -19,9 +23,13 @@ exports.getByArea = (req, res, next) => {
 			area: req.params.area
 		}, 'nome email area')
 		.then(data => {
-			res.status(200).send(data);
-		}).catch(erro => {
-			res.status(400).send(erro);
+			if (Array.isArray(data) && data.length) {
+				res.status(200).send(data)
+			} else {
+				res.status(200).send({
+					message: "Sem advogados por essa area!"
+				});
+			};
 		});
 };
 
@@ -29,14 +37,15 @@ exports.getByEmail = (req, res, next) => {
 	Advogado
 		.findOne({
 			email: req.params.email
-		}, 'email senha')
+		}, 'email senha area nome')
 		.then(data => {
-			res.status(200).send(data);
-		}).catch(erro => {
-			res.status(400).send({
-				message: 'Advogado nao cadastrado',
-				data: erro
-			});
+			if (data = null) {
+				res.status(200).send(data);
+			} else {
+				res.status(200).send({
+					message: 'Advogado não cadastrado'
+				});
+			};
 		});
 };
 
@@ -50,7 +59,7 @@ exports.postCadastro = (req, res, next) => {
 			});
 		}).catch(erro => {
 			res.status(400).send({
-				err: 'Advogado nao cadastrado',
+				err: 'Advogado não cadastrado',
 				message: erro
 			});
 		});
@@ -68,7 +77,7 @@ exports.putSenha = (req, res, next) => {
 			});
 		}).catch(erro => {
 			res.status(400).send({
-				err: 'Cadastro nao atualizado',
+				err: 'Cadastro não atualizado',
 				message: erro
 			});
 		});
@@ -82,12 +91,12 @@ exports.deleteConta = (req, res, next) => {
 		.then(data => {
 			if (data == null) {
 				res.status(400).send({
-					message: 'Cadastro nao encontrado'
+					message: 'Cadastro não encontrado'
 				})
 			} else {
 				res.status(200).send({
 					message: 'Cadastro removido',
-				})
+				});
 			};
 		});
 };

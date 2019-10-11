@@ -7,9 +7,13 @@ exports.get = (req, res, next) => {
 	Cliente
 		.find({}, 'nome email')
 		.then(data => {
-			res.status(200).send(data);
-		}).catch(erro => {
-			res.status(400).send(erro);
+			if (Array.isArray(data) && data.length) {
+				res.status(200).send(data)
+			} else {
+				res.status(200).send({
+					message: "Sem clientes cadastrados!"
+				});
+			};
 		});
 };
 
@@ -19,12 +23,13 @@ exports.getByEmail = (req, res, next) => {
 			email: req.params.email
 		}, 'email senha')
 		.then(data => {
-			res.status(200).send(data);
-		}).catch(erro => {
-			res.status(400).send({
-				message: 'Cliente nao cadastrado',
-				data: erro
-			});
+			if (data = null) {
+				res.status(200).send(data);
+			} else {
+				res.status(200).send({
+					message: 'Cliente nao cadastrado'
+				});
+			};
 		});
 };
 
@@ -76,7 +81,7 @@ exports.deleteConta = (req, res, next) => {
 			} else {
 				res.status(200).send({
 					message: 'Cadastro removido',
-				})
+				});
 			};
 		});
 };

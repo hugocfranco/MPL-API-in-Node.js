@@ -7,21 +7,29 @@ exports.get = (req, res, next) => {
 	Escritorio
 		.find({}, 'nome email area')
 		.then(data => {
-			res.status(200).send(data);
-		}).catch(erro => {
-			res.status(400).send(erro);
+			if (Array.isArray(data) && data.length) {
+				res.status(200).send(data)
+			} else {
+				res.status(200).send({
+					message: "Sem escritórios cadastrados!"
+				})
+			};
 		});
 };
 
 exports.getByArea = (req, res, next) => {
 	Escritorio
-		.findOne({
+		.find({
 			area: req.params.area
 		}, 'nome email area')
-		.then(x => {
-			res.status(200).send(x);
-		}).catch(erro => {
-			res.status(400).send(erro);
+		.then(data => {
+			if (Array.isArray(data) && data.length) {
+				res.status(200).send(data)
+			} else {
+				res.status(200).send({
+					message: "Sem escritório por essa area!"
+				});
+			};
 		});
 };
 
@@ -31,12 +39,13 @@ exports.getByEmail = (req, res, next) => {
 			email: req.params.email
 		}, 'email senha')
 		.then(data => {
-			res.status(200).send(data);
-		}).catch(erro => {
-			res.status(400).send({
-				message: 'Escritorio nao cadastrado',
-				data: erro
-			});
+			if (data = null) {
+				res.status(200).send(data);
+			} else {
+				res.status(200).send({
+					message: 'Escritório nao cadastrado'
+				});
+			};
 		});
 };
 
